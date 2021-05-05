@@ -1,0 +1,42 @@
+/* Add mobile styles for the component here.  */
+
+.flex-layout-0 {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-layout-1 {
+  justify-content: space-between;
+  height: 20%;
+  width: 100%;
+  border-color: thistle;
+  border-width: 1;
+  margin: 5;
+}
+
+.flex-layout-2 {
+  justify-content: space-around;
+  flex-direction: column;
+  border-color: thistle;
+  border-width: 1;
+  margin: 5;
+  align-items: center;
+  height: 70%;
+  width: 20%;
+}
+
+.flex-layout-3 {
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100;
+  border-color: thistle;
+  border-width: 1;
+  margin: 5;
+  height: 70%;
+  width: 70%;
+}
+
+.box {
+  width: 50;
+}

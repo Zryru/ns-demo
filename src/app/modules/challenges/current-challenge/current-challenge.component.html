@@ -1,3 +1,7 @@
 <StackLayout>
-    <Label text="Do Centr routine every day"></Label>
+    <TextField class="field" hint="Challenge title" [(ngModel)]="challengeDescription" ></TextField>
+
+    <Button class="btn" (tap)="setChallenge()" text="Set Challenge"></Button>
+
+    <Label [text]="currentChallenge"></Label>
 </StackLayout>
