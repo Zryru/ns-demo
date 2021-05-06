@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChallengeDashboardComponent } from './challenge-dashboard.component';
+import { ChallengeDashboardComponent } from './challenge-dashboard/challenge-dashboard.component';
 
 
 const routes: Routes = [
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ChallengeDashboardRoutingModule {}
+export class ChallengeRoutingModule {}

@@ -3,12 +3,12 @@ import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "@nativescript/angular";
 
 const routes: Routes = [
-  { path: "", redirectTo: "flexbox", pathMatch: "full" },
+  { path: "", redirectTo: "challenges", pathMatch: "full" },
   {
     path: "challenges",
     loadChildren: () =>
-      import("./modules/challenges/challenge-dashboard/challenge-dashboard.module").then(
-        m => m.ChallengeDashboardModule
+      import("./modules/challenges/challenge.module").then(
+        m => m.ChallengeModule
       )
   },
   {

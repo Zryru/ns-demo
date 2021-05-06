@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'nsjdc-challenge-dashboard',
-  templateUrl: './challenge-dashboard.component.html',
-  styleUrls: ['./challenge-dashboard.component.css']
+  selector: "nsjdc-challenge-dashboard",
+  templateUrl: "./challenge-dashboard.component.html",
+  styleUrls: ["./challenge-dashboard.component.css"]
 })
 export class ChallengeDashboardComponent implements OnInit {
+  challenge = "";
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onChallengeInput(event: string) {
+    this.challenge = event;
   }
-
 }

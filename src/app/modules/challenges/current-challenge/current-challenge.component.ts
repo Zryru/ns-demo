@@ -1,19 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "nsjdc-current-challenge",
   templateUrl: "./current-challenge.component.html",
   styleUrls: ["./current-challenge.component.css"]
 })
-export class CurrentChallengeComponent implements OnInit {
-  challengeDescription = "";
-  currentChallenge = "";
+export class CurrentChallengeComponent  {
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  setChallenge(): void {
-    this.currentChallenge = this.challengeDescription;
-  }
+  @Input() challenge: string;
 }
