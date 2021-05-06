@@ -6,12 +6,12 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./challenge-dashboard.component.css"]
 })
 export class ChallengeDashboardComponent implements OnInit {
-  challenge = "";
+  challengesArr: string[] = [];
   constructor() {}
 
   ngOnInit(): void {}
 
   onChallengeInput(event: string) {
-    this.challenge = event;
+    this.challengesArr.push(event);
   }
 }

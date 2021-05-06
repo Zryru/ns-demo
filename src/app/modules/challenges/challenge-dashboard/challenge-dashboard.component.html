@@ -1,4 +1,4 @@
-<StackLayout>
-  <nsjdc-challenge-edit (input)="onChallengeInput($event)"></nsjdc-challenge-edit>
-  <nsjdc-current-challenge [challenge]="challenge" ></nsjdc-current-challenge>
-</StackLayout>
+<FlexboxLayout flexDirection="column">
+  <nsjdc-challenge-edit (input)="onChallengeInput($event)" height="100"></nsjdc-challenge-edit>
+  <nsjdc-current-challenge [challenges]="challengesArr" ></nsjdc-current-challenge>
+</FlexboxLayout>
