@@ -7,9 +7,10 @@ import { ActionBarModule } from '../../shared/ui/action-bar/action-bar.module';
 import { ChallengeDashboardComponent } from './challenge-dashboard/challenge-dashboard.component';
 import { ChallengeEditComponent } from './challenge-edit/challenge-edit.component';
 import { ChallengeRoutingModule } from './challenge-routing.module';
+import { ChallengeTabsComponent } from './challenge-tabs/challenge-tabs.component';
 import { CurrentChallengeComponent } from './current-challenge/current-challenge.component';
 import { TodayComponent } from './today/today.component';
-import { ChallengeTabsComponent } from './challenge-tabs/challenge-tabs.component';
+
 @NgModule({
   declarations: [
     ChallengeDashboardComponent,

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { ItemEventData, Page } from '@nativescript/core';
 
 declare var android: any;
 @Component({
@@ -11,15 +10,11 @@ declare var android: any;
 export class CurrentChallengeComponent {
   @Input() challenges: string[] = [];
 
-  constructor(private router: RouterExtensions, private page: Page) {}
-
-  onItemTap(event: ItemEventData) {
-    console.log('[List item] =>', event);
-  }
+  constructor(private router: RouterExtensions) {}
 
   goEdit() {
-    this.router.navigate(['/challenges/edit']);
+    this.router.navigateByUrl('challenges/edit', {
+      transition: { name: 'slideLeft' },
+    });
   }
-
-
 }

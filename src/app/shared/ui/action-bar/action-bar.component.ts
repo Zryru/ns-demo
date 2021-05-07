@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { isAndroid, Page } from '@nativescript/core';
+import { UIService } from '../../../shared/ui/ui.service';
 declare var android: any;
 @Component({
   selector: 'nsjdc-action-bar',
@@ -9,16 +10,21 @@ declare var android: any;
 })
 export class ActionBarComponent implements OnInit {
   @Input() title: string;
+  @Input() hasMenu = true;
 
   get canGoBack() {
     return this.router.canGoBack();
   }
 
-  constructor(private page: Page, private router: RouterExtensions) {}
+  get isIsAndroid() {
+    return isAndroid;
+  }
+
+  constructor(private page: Page, private router: RouterExtensions, private uiService: UIService) {}
 
   ngOnInit(): void {}
 
-  onLoadedActionBar() {
+   onLoadedActionBar() {
     if (isAndroid) {
       const androidToolbar = this.page.actionBar.nativeView;
       const backButton = androidToolbar.getNavigationIcon();
@@ -35,5 +41,10 @@ export class ActionBarComponent implements OnInit {
     if (isAndroid) {
       this.router.backToPreviousPage();
     }
+  }
+
+  toggleMenu(){
+    console.log('TOGGLING')
+    this.uiService.toggleDrawer();
   }
 }
