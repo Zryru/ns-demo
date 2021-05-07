@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'challenges', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   {
     path: 'challenges',
     loadChildren: () =>
@@ -11,6 +11,10 @@ const routes: Routes = [
         (m) => m.ChallengeModule,
       ),
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)
+  }
 ];
 
 @NgModule({
