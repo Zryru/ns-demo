@@ -1,20 +1,20 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-
-import { FlexboxRoutingModule } from './flexbox-routing.module';
 import { NativeScriptCommonModule } from '@nativescript/angular';
-import { FlexboxComponent } from './flexbox.component';
+import { AuthRoutingModule } from './auth-routing.module';
+import { AuthComponent } from './auth.component';
+
 
 
 @NgModule({
   declarations: [
-    FlexboxComponent
+    AuthComponent
   ],
   imports: [
-    FlexboxRoutingModule,
+    AuthRoutingModule,
     NativeScriptCommonModule
   ],
   schemas: [
     NO_ERRORS_SCHEMA
   ]
 })
-export class FlexboxModule { }
+export class AuthModule { }

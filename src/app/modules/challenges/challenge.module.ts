@@ -4,12 +4,14 @@ import { ChallengeDashboardComponent } from "./challenge-dashboard/challenge-das
 import { ChallengeEditComponent } from "./challenge-edit/challenge-edit.component";
 import { ChallengeRoutingModule } from "./challenge-routing.module";
 import { CurrentChallengeComponent } from "./current-challenge/current-challenge.component";
+import { TodayComponent } from './today/today.component';
 
 @NgModule({
   declarations: [
     ChallengeDashboardComponent,
     ChallengeEditComponent,
-    CurrentChallengeComponent
+    CurrentChallengeComponent,
+    TodayComponent
   ],
   imports: [NativeScriptCommonModule, NativeScriptFormsModule, ChallengeRoutingModule],
   schemas: [NO_ERRORS_SCHEMA]

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
-import { FlexboxComponent } from './flexbox.component';
+import { AuthComponent } from './auth.component';
 
-const routes: Routes = [{
-  path: '',
-  component: FlexboxComponent
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: AuthComponent,
+  },
+];
 
 @NgModule({
   imports: [NativeScriptRouterModule.forChild(routes)],
-  exports: [NativeScriptRouterModule]
+  exports: [NativeScriptRouterModule],
 })
-export class FlexboxRoutingModule { }
+export class AuthRoutingModule {}
