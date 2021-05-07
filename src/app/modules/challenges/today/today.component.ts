@@ -9,7 +9,9 @@ import { RouterExtensions } from '@nativescript/angular';
 export class TodayComponent implements OnInit {
   constructor(private router: RouterExtensions) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('HERE')
+  }
 
   goCurrent() {
     this.router.navigate(['/challenges/current'], {
