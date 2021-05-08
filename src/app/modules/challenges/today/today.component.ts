@@ -10,7 +10,6 @@ export class TodayComponent implements OnInit {
   constructor(private router: RouterExtensions) {}
 
   ngOnInit(): void {
-    console.log('HERE')
   }
 
 }

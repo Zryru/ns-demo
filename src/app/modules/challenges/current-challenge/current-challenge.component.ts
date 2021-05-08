@@ -17,4 +17,10 @@ export class CurrentChallengeComponent {
       transition: { name: 'slideLeft' },
     });
   }
+
+  goCreate() {
+    this.router.navigateByUrl('challenges/replace', {
+      transition: { name: 'slideLeft' },
+    });
+  }
 }

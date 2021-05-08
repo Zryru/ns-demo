@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from '@nativescript/angular';
+import { SelectedIndexChangedEventData } from '@nativescript/core/ui/tab-view';
 
 @Component({
   selector: 'nsjdc-challenge-tabs',
@@ -8,6 +9,8 @@ import { RouterExtensions } from '@nativescript/angular';
   styleUrls: ['./challenge-tabs.component.css'],
 })
 export class ChallengeTabsComponent implements OnInit {
+
+  selectedIndex: number = 0;
   constructor(
     private router: RouterExtensions,
     private activeRoute: ActivatedRoute,
@@ -25,5 +28,9 @@ export class ChallengeTabsComponent implements OnInit {
       ],
       { relativeTo: this.activeRoute },
     );
+  }
+
+  onSelectedIndex(event: SelectedIndexChangedEventData) {
+    this.selectedIndex = event.newIndex;
   }
 }

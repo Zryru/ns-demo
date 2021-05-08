@@ -8,8 +8,17 @@
     </GridLayout>
   </ng-template>
 </ListView> -->
-<nsjdc-action-bar [title]="'Current Challenge'"></nsjdc-action-bar>
+<nsjdc-action-bar [title]="'Current Challenge'">
+  <ActionItem ios.position="right" android.position="actionBar">
+    <Label text="Replace" (tap)="goCreate()"></Label>
+  </ActionItem>
+  <ActionItem ios.position="right" android.position="actionBar">
+    <Label text="Edit" (tap)="goEdit()"></Label>
+  </ActionItem>
+</nsjdc-action-bar>
 <StackLayout>
   <Label [text]="'The current page red'"></Label>
   <Button [text]="'Edit'" (tap)="goEdit()"></Button>
+  <Button [text]="'Replace'" (tap)="goCreate()"></Button>
+
 </StackLayout>
