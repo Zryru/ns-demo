@@ -17,8 +17,7 @@
   </ActionItem>
 </nsjdc-action-bar>
 <StackLayout>
-  <Label [text]="'The current page red'"></Label>
-  <Button [text]="'Edit'" (tap)="goEdit()"></Button>
-  <Button [text]="'Replace'" (tap)="goCreate()"></Button>
+  <Label [text]="'The current challenge'" class="title" horizontalAlignment="center"></Label>
+  <Button [text]="'Change Status'" (tap)="onChangeStatus()"></Button>
 
 </StackLayout>

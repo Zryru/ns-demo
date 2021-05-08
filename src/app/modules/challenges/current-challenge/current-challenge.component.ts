@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { RouterExtensions } from '@nativescript/angular';
+import { Component, Input, ViewContainerRef } from '@angular/core';
+import { ModalDialogService, RouterExtensions } from '@nativescript/angular';
+import { DayModalComponent } from '~/app/challenges/day-modal/day-modal.component';
 
 declare var android: any;
 @Component({
@@ -10,7 +11,7 @@ declare var android: any;
 export class CurrentChallengeComponent {
   @Input() challenges: string[] = [];
 
-  constructor(private router: RouterExtensions) {}
+  constructor(private router: RouterExtensions, private modalDialog: ModalDialogService, private vcRef: ViewContainerRef) {}
 
   goEdit() {
     this.router.navigateByUrl('challenges/edit', {
@@ -22,5 +23,9 @@ export class CurrentChallengeComponent {
     this.router.navigateByUrl('challenges/replace', {
       transition: { name: 'slideLeft' },
     });
+  }
+
+  onChangeStatus() {
+    this.modalDialog.showModal(DayModalComponent, { fullscreen: false, viewContainerRef: this.vcRef})
   }
 }
