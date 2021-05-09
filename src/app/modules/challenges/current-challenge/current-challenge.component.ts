@@ -11,7 +11,11 @@ declare var android: any;
 export class CurrentChallengeComponent {
   @Input() challenges: string[] = [];
 
-  constructor(private router: RouterExtensions, private modalDialog: ModalDialogService, private vcRef: ViewContainerRef) {}
+  constructor(
+    private router: RouterExtensions,
+    private modalDialog: ModalDialogService,
+    private vcRef: ViewContainerRef,
+  ) {}
 
   goEdit() {
     this.router.navigateByUrl('challenges/edit', {
@@ -26,6 +30,29 @@ export class CurrentChallengeComponent {
   }
 
   onChangeStatus() {
-    this.modalDialog.showModal(DayModalComponent, { fullscreen: false, viewContainerRef: this.vcRef})
+    // const loginOptions = {
+    //   title: 'Login Form',
+    //   message: 'Enter your credentials',
+    //   okButtonText: 'Login',
+    //   cancelButtonText: 'Cancel',
+    //   neutralButtonText: 'Neutral',
+    //   userNameHint: 'Enter your username',
+    //   passwordHint: 'Enter your password',
+    //   userName: 'john_doe',
+    //   password: '123456'
+    // }
+    // Dialogs.login(loginOptions).then((result) => {
+    //   console.log('confirm result', result);
+    // });
+    this.modalDialog
+      .showModal(DayModalComponent, {
+        fullscreen: true,
+        viewContainerRef: this.vcRef,
+        context: { date: new Date() },
+        cancelable: false
+      })
+      .then((callBackResult: 'completed' | 'failed') => {
+        console.log('Modal call back', callBackResult);
+      });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalDialogParams } from '@nativescript/angular';
 
 @Component({
   selector: 'nsjdc-day-modal',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DayModalComponent implements OnInit {
 
-  constructor() { }
+  context: {date: Date};
+
+  constructor(private modalDialogParams: ModalDialogParams) { }
 
   ngOnInit(): void {
+     this.context = this.modalDialogParams.context;
   }
 
+  clickHandler(event: 'completed' | 'failed') {
+    this.modalDialogParams.closeCallback(event);
+  }
 }
