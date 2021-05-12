@@ -27,16 +27,17 @@
     </FlexboxLayout>
     <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
       <Label
-        class="text-center"
+        class="week-day text-center"
         width="100%"
         *ngFor="let day of weekDays; let i = index"
         [text]="day"
         [row]="0"
         [col]="i"
       ></Label>
-      <Label class="text-center" *ngFor="let day of days; let i = index" [text]="day.dayInMonth"
+      <Label class="day text-center not-setable" *ngFor="let day of days; let i = index" [text]="day.dayInMonth"
        [row]="getRow(i, day)"
        [col]="day.dayInWeek"
+       (tap)="onChangeStatus()"
       ></Label>
     </GridLayout>
   </FlexboxLayout>

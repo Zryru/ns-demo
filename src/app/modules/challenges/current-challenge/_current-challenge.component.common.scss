@@ -1,5 +1,5 @@
 /* Add mobile styles for the component here.  */
-
+@import '../../../../theme/colors';
 .page {
     flex-direction: column;
     justify-content: center;
@@ -7,4 +7,35 @@
     margin: 20;
     // height: 100%;
     // background: chocolate;
+}
+
+
+.week-day{
+    color: $secondary;
+    font-weight: bold;
+    margin: 15 0;
+}
+
+.day {
+    width: 50;
+    height: 50;
+    border-color: $primary;
+    border-width: 1;
+    border-radius: 50%;
+    color: $primary;
+}
+
+.completed {
+    background: $success;
+    color: white;
+}
+
+.failed {
+    background: $fail;
+    color: white;
+}
+
+.not-setable {
+    background: #ccc;
+    color: #535353;
 }
