@@ -4,7 +4,7 @@ import { RouterExtensions } from '@nativescript/angular';
 @Component({
   selector: 'nsjdc-today',
   templateUrl: './today.component.html',
-  styleUrls: ['./today.component.css'],
+  styleUrls: ['./today.component.scss'],
 })
 export class TodayComponent implements OnInit {
   constructor(private router: RouterExtensions) {}

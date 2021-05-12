@@ -16,8 +16,28 @@
     <Label text="Edit" (tap)="goEdit()"></Label>
   </ActionItem>
 </nsjdc-action-bar>
-<StackLayout>
-  <Label [text]="'The current challenge'" class="title" horizontalAlignment="center"></Label>
-  <Button [text]="'Change Status'" (tap)="onChangeStatus()"></Button>
-
-</StackLayout>
+<ScrollView >
+  <FlexboxLayout class="page">
+    <FlexboxLayout flexDirection="column" >
+      <Label class="h1 text-center" [text]="'The current challenge'"></Label>
+      <Label
+        class="body text-center"
+        [text]="'The current challenge fancy description!'"
+      ></Label>
+    </FlexboxLayout>
+    <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
+      <Label
+        class="text-center"
+        width="100%"
+        *ngFor="let day of weekDays; let i = index"
+        [text]="day"
+        [row]="0"
+        [col]="i"
+      ></Label>
+      <Label class="text-center" *ngFor="let day of days; let i = index" [text]="day.dayInMonth"
+       [row]="getRow(i, day)"
+       [col]="day.dayInWeek"
+      ></Label>
+    </GridLayout>
+  </FlexboxLayout>
+</ScrollView>

@@ -10,39 +10,34 @@ of writing your own CSS rules. You can learn more about the
 NativeScript core theme at https://github.com/nativescript/theme
 The imported CSS rules must precede all other types of rules.
 */
-@import '@nativescript/theme/css/core.css';
-@import '@nativescript/theme/css/default.css';
+
+// NS CORE
+// @import '~@nativescript/theme/scss/variables/index';
+// @import '~@nativescript/theme/scss/core/primitives/index';
+// @import '~@nativescript/theme/scss/core/utilities';
+// @import '~@nativescript/theme/scss/core/controls';
+
+@import '~@nativescript/theme/core';
+
+
+// Custom Color variables
+
+@import './theme/colors';
+
+// NS theme
+@import '~@nativescript/theme/default';
 
 /* Place any CSS rules you want to apply on both iOS and Android here.
 This is where the vast majority of your CSS code goes. */
 
-/*
-The following CSS rule changes the font size of all Buttons that have the
-"-primary" class modifier.
-*/
-button.-primary {
-  font-size: 18;
-}
+// components
+@import './theme/forms';
 
-.btn {
-  background: #7c015d;
-  border-width: 1;
-  border-color: #7c015d;
-  color: white;
-  padding: 5 10;
-  border-radius: 30%;
-  margin: 5 0;
-}
+// shame
 
-.field {
-  padding: 5 10;
-  border-bottom: 1;
-  border-color: #7c015d;
-}
-
-.title {
-  color: #7c015d;
-  font-size: larger;
+ActionBar {
+  background: $primary;
+  color: $white;
 }
 
 .drawer-container {
@@ -51,4 +46,25 @@ button.-primary {
   justify-content: center;
   align-items: center;
   padding: 20;
+}
+
+// button.btn {
+//   background: $primary;
+//   color: $white;
+//   border-width: 1;
+//   padding: 5 10;
+//   border-radius: 30%;
+//   margin: 5 0;
+// }
+
+Button.btn-flat {
+  background: transparent;
+  border-color: transparent;
+  border-width: 1;
+  color: $primary;
+}
+
+.h1 {
+  font-weight: bold;
+  color: $primary;
 }

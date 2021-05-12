@@ -1,11 +1,18 @@
 <nsjdc-action-bar [title]="isCreating ? 'Replace Challenge': 'Edit Challenge'" [hasMenu]="false"></nsjdc-action-bar>
-<FlexboxLayout justifyContent="space-between">
+<FlexboxLayout class="form">
+  <StackLayout class="input-field">
+    <Label class="label" text="Title"></Label>
+    <TextField class="input"></TextField>
+  </StackLayout>
+  <StackLayout class="input-field">
+    <Label class="label" text="Title"></Label>
+    <TextField class="input"></TextField>
+  </StackLayout>
   <!-- <TextField
     class="form-control"
     hint="Changellenge title"
     [(ngModel)]="challengeDescription"
   >
-  </TextField>
-  <Button class="btn" (tap)="onInput()" text="Add Challenge"></Button> -->
-  <Label [text]="'The edit page'"></Label>
+  </TextField> -->
+  <Button class="btn btn-primary" (tap)="onInput()" text="Add Challenge"></Button>
 </FlexboxLayout>

@@ -6,7 +6,7 @@ declare var android: any;
 @Component({
   selector: 'nsjdc-action-bar',
   templateUrl: './action-bar.component.html',
-  styleUrls: ['./action-bar.component.css'],
+  styleUrls: ['./action-bar.component.scss'],
 })
 export class ActionBarComponent implements OnInit {
   @Input() title: string;

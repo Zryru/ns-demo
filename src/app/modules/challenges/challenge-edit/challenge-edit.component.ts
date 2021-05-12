@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'nsjdc-challenge-edit',
   templateUrl: './challenge-edit.component.html',
-  styleUrls: ['./challenge-edit.component.css'],
+  styleUrls: ['./challenge-edit.component.scss'],
 })
 export class ChallengeEditComponent implements OnInit {
   challengeDescription = '';

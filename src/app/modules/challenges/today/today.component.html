@@ -1,5 +1,6 @@
-<nsjdc-action-bar [title]="'Todays Challenge'">
-  </nsjdc-action-bar>
-<StackLayout>
-    <Button text="today works!!!" class="btn btn-primary"></Button>
-</StackLayout>
+<nsjdc-action-bar [title]="'Todays Challenge'"> </nsjdc-action-bar>
+<FlexboxLayout>
+  <Button class="btn btn-success -rounded-lg" text="Completed"></Button>
+  <Button class="btn btn-fail -rounded-lg" text="Failed"></Button>
+  <Button class="btn btn-flat -rounded-lg" text="Reset"></Button>
+</FlexboxLayout>

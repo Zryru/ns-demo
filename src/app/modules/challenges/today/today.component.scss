@@ -1,0 +1,25 @@
+/* Add mobile styles for the component here.  */
+
+@import '~@nativescript/theme/scss/variables/index';
+@import '../../../../theme/colors';
+
+FlexboxLayout {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+button.btn {
+  width: 80%;
+}
+
+button.btn-success {
+  background-color: $success !important;
+  color: $white;
+}
+
+button.btn-fail {
+  background-color: $fail;
+  color: $white;
+}
