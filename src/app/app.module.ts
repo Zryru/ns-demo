@@ -3,13 +3,11 @@ import { NativeScriptModule } from '@nativescript/angular';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DayModalComponent } from './challenges/day-modal/day-modal.component';
-
 
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule, NativeScriptUISideDrawerModule],
-  declarations: [AppComponent, DayModalComponent],
+  declarations: [AppComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
 })

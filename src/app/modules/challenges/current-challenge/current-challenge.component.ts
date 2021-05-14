@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, RouterExtensions } from '@nativescript/angular';
-import { DayModalComponent } from '~/app/challenges/day-modal/day-modal.component';
+import { DayModalComponent } from '../day-modal/day-modal.component';
 
 declare var android: any;
 @Component({

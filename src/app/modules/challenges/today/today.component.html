@@ -1,6 +1,2 @@
 <nsjdc-action-bar [title]="'Todays Challenge'"> </nsjdc-action-bar>
-<FlexboxLayout>
-  <Button class="btn btn-success -rounded-lg" text="Completed"></Button>
-  <Button class="btn btn-fail -rounded-lg" text="Failed"></Button>
-  <Button class="btn btn-flat -rounded-lg" text="Reset"></Button>
-</FlexboxLayout>
+<nsjdc-challenge-actions (action)="onAction($event)"></nsjdc-challenge-actions>
