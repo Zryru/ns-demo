@@ -18,7 +18,7 @@ The imported CSS rules must precede all other types of rules.
 // @import '~@nativescript/theme/scss/core/controls';
 
 @import '~@nativescript/theme/core';
-
+$white: white;
 
 // Custom Color variables
 
@@ -67,4 +67,12 @@ Button.btn-flat {
 .h1 {
   font-weight: bold;
   color: $primary;
+  // font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
+  font-family: 'Waltograph', 'waltograph42';
+}
+
+.fa {
+  font-family: 'FontAwesome', 'Font-Awesome';
+  font-size: 17;
+  color: white;
 }

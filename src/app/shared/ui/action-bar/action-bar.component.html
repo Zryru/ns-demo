@@ -7,8 +7,8 @@
   ></NavigationButton>
   <ng-container *ngIf="hasMenu">
     <NavigationButton *ngIf="isIsAndroid" icon="res://menu_black" (tap)="toggleMenu()"></NavigationButton>
-    <ActionItem *ngIf="!isIsAndroid" ios.position="left" (tap)="toggleMenu()">
-      <Label color="white" text="MENU"></Label>
+    <ActionItem *ngIf="!isIsAndroid" ios.position="left" (tap)="toggleMenu()" >
+      <Label color="white" text="&#xf0c9;" class="fa"></Label>
     </ActionItem>
   </ng-container>
   <ng-content></ng-content>

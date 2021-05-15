@@ -4,5 +4,7 @@
 @import '../../../../theme/colors';
 
 GridLayout {
-    background-image: url("res://disney-castle")
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
