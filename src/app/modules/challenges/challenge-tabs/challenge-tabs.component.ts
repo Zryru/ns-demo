@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from '@nativescript/angular';
-import { SelectedIndexChangedEventData } from '@nativescript/core/ui/tab-view';
+import {
+  SelectedIndexChangedEventData,
+  TabView
+} from '@nativescript/core/ui/tab-view';
 
 @Component({
   selector: 'nsjdc-challenge-tabs',
@@ -9,6 +12,7 @@ import { SelectedIndexChangedEventData } from '@nativescript/core/ui/tab-view';
   styleUrls: ['./challenge-tabs.component.css'],
 })
 export class ChallengeTabsComponent implements OnInit {
+  @ViewChild('tab', { static: true }) tabLayout: TabView;
 
   selectedIndex: number = 0;
   constructor(

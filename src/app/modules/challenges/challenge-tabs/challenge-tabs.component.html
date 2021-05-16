@@ -3,11 +3,12 @@
   androidSelectedTabHighlightColor="#7c015d"
   selectedTabTextColor="#7c015d"
   (selectedIndexChanged)="onSelectedIndex($event)"
+  #tab
 >
-  <StackLayout *tabItem="{ title: 'today' }">
+  <StackLayout *tabItem="{ title: 'today', iconSource: 'res://check' }">
     <router-outlet *ngIf="selectedIndex === 0" name="today"></router-outlet>
   </StackLayout>
-  <StackLayout *tabItem="{ title: 'Current Challenge' }">
+  <StackLayout *tabItem="{ title: 'Current Challenge', iconSource: 'res://trophy' }">
     <router-outlet *ngIf="selectedIndex === 1" name="currentChallenge"></router-outlet>
   </StackLayout>
 </TabView>

@@ -46,18 +46,13 @@ ActionBar {
   justify-content: center;
   align-items: center;
   padding: 20;
+
+  button.btn {
+    font-size: 24;
+  }
 }
 
-// button.btn {
-//   background: $primary;
-//   color: $white;
-//   border-width: 1;
-//   padding: 5 10;
-//   border-radius: 30%;
-//   margin: 5 0;
-// }
-
-Button.btn-flat {
+button.btn-flat {
   background: transparent;
   border-color: transparent;
   border-width: 1;
