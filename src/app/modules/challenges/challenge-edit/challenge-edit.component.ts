@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PageRoute } from '@nativescript/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PageRoute, registerElement, RouterExtensions } from '@nativescript/angular';
+import { FlexboxLayout } from '@nativescript/core';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -11,9 +13,11 @@ export class ChallengeEditComponent implements OnInit {
   challengeDescription = '';
   isCreating = true;
 
-  @Output() input = new EventEmitter<string>();
+  @ViewChild('f', { static: true }) form: NgForm;
 
-  constructor(private pageRoute: PageRoute) {}
+  constructor(private pageRoute: PageRoute, private router: RouterExtensions) {
+    registerElement('form', () => FlexboxLayout);
+  }
 
   ngOnInit(): void {
     this.pageRoute.activatedRoute
@@ -27,7 +31,9 @@ export class ChallengeEditComponent implements OnInit {
       });
   }
 
-  onInput(): void {
-    this.input.emit(this.challengeDescription);
+  onSubmit(){
+    console.log('[Form]', this.form.value)
+    this.router.backToPreviousPage();
   }
+
 }

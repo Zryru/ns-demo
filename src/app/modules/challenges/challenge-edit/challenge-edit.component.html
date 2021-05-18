@@ -1,18 +1,22 @@
-<nsjdc-action-bar [title]="isCreating ? 'Replace Challenge': 'Edit Challenge'" [hasMenu]="false"></nsjdc-action-bar>
-<FlexboxLayout class="form">
+<nsjdc-action-bar
+  [title]="isCreating ? 'Replace Challenge' : 'Edit Challenge'"
+  [hasMenu]="false"
+></nsjdc-action-bar>
+<form class="form" #f="ngForm" >
   <StackLayout class="input-field">
-    <Label class="label" text="Title"></Label>
-    <TextField class="input"></TextField>
+    <Label class="label" text="Title" [ngClass]="{'invalid': !titleControl.valid && titleControl.touched}"></Label>
+    <TextField class="input" returnKeyType="next" required ngModel #titleControl="ngModel" name="titleControl"> </TextField>
+    <Label *ngIf="!titleControl.valid && titleControl.touched" text="field required"></Label>
   </StackLayout>
   <StackLayout class="input-field">
-    <Label class="label" text="Title"></Label>
-    <TextField class="input"></TextField>
+    <Label class="label" text="Description" [ngClass]="{'invalid': !descriptionControl.valid && descriptionControl.touched}"></Label>
+    <TextField class="input" returnKeyType="done"  required ngModel #descriptionControl="ngModel" name="descriptionControl"></TextField>
+    <Label *ngIf="!descriptionControl.valid && descriptionControl.touched" text="field required"></Label>
   </StackLayout>
-  <!-- <TextField
-    class="form-control"
-    hint="Changellenge title"
-    [(ngModel)]="challengeDescription"
-  >
-  </TextField> -->
-  <Button class="btn btn-primary" (tap)="onInput()" text="Add Challenge"></Button>
-</FlexboxLayout>
+  <Button
+    class="btn btn-primary"
+    (tap)="onSubmit()"
+    text="Add Challenge"
+    [isEnabled]="titleControl.valid && descriptionControl.valid"
+  ></Button>
+</form>
