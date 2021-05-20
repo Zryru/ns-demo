@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DayStatus } from '~/app/models/day.model';
 
 @Component({
@@ -10,6 +10,7 @@ export class ChallengeActionsComponent implements OnInit {
 
   actions = DayStatus;
 
+  @Input()
   status: DayStatus = DayStatus.open;
 
   @Output() action = new EventEmitter<DayStatus>();

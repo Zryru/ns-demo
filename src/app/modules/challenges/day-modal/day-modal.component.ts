@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDialogParams } from '@nativescript/angular';
-import { DayStatus } from '~/app/models/day.model';
+import { Day, DayStatus } from '~/app/models/day.model';
 
 @Component({
   selector: 'nsjdc-day-modal',
@@ -9,7 +9,7 @@ import { DayStatus } from '~/app/models/day.model';
 })
 export class DayModalComponent implements OnInit {
 
-  context: {date: Date};
+  context: {day: Day};
 
   constructor(private modalDialogParams: ModalDialogParams) { }
 

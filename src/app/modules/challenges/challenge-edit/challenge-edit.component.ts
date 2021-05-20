@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PageRoute, registerElement, RouterExtensions } from '@nativescript/angular';
 import { FlexboxLayout } from '@nativescript/core';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { ChallengeService } from '~/app/services/challenge.service';
 
 @Component({
@@ -28,6 +28,19 @@ export class ChallengeEditComponent implements OnInit {
           this.isCreating = true;
         } else {
           this.isCreating = paramMap.get('mode') !== 'edit';
+        }
+
+        if(!this.isCreating) {
+          console.log('edit!!!');
+          this.challengeService.currentChallenge$
+            .pipe(take(1))
+            .subscribe((currentChallenge) => {
+              console.log('????', currentChallenge, this.form.value)
+              if (currentChallenge) {
+                this.form.value.title = currentChallenge.title;
+                this.form.value.description = currentChallenge.description;
+              }
+            });
         }
       });
   }

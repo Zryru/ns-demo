@@ -7,7 +7,6 @@ FlexboxLayout {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .animate-button {
@@ -19,7 +18,7 @@ FlexboxLayout {
 
 @keyframes slide-up {
   from {
-    transform: translateY(-30);
+    transform: translateY(10);
   }
   to {
     transform: translateY(0);

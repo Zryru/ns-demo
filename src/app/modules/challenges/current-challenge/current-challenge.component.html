@@ -25,12 +25,13 @@
         [col]="i"
       ></Label>
       <Label
-        class="day text-center not-setable"
+        class="day text-center"
         *ngFor="let day of currentChallenge?.days; let i = index"
+        [ngClass]="{'not-setable': !getIsSetable(day.dayInMonth), 'completed': day.status === status.completed, 'failed': day.status === status.failed }"
         [text]="day.dayInMonth"
         [row]="getRow(i, day)"
         [col]="day.dayInWeek"
-        (tap)="onChangeStatus()"
+        (tap)="onChangeStatus(day)"
       ></Label>
     </GridLayout>
   </FlexboxLayout>

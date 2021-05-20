@@ -1,12 +1,12 @@
 <FlexboxLayout>
   <Button
-    class="btn btn-success -rounded-lg fa"
+    class="btn btn-success -rounded-lg fa" [ngClass]="{'animate-button ': (status === actions.completed)}"
     [text]="status === actions.completed ? '&#xf00c;' : 'Complete'"
     (tap)="onAction(actions.completed)"
     [isEnabled]="status === actions.open"
   ></Button>
   <Button
-    class="btn btn-fail -rounded-lg fa"
+    class="btn btn-fail -rounded-lg fa" [ngClass]="{'animate-button ': (status === actions.failed)}"
     [text]="status === actions.failed ? '&#xf00d;' : 'Failed'"
     (tap)="onAction(actions.failed)"
     [isEnabled]="status === actions.open"
