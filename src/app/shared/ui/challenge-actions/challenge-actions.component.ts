@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
-export type ChallengeAction = 'completed' | 'failed' | 'reset';
+import { DayStatus } from '~/app/models/day.model';
 
 @Component({
   selector: 'nsjdc-challenge-actions',
@@ -9,7 +8,11 @@ export type ChallengeAction = 'completed' | 'failed' | 'reset';
 })
 export class ChallengeActionsComponent implements OnInit {
 
-  @Output() action = new EventEmitter<ChallengeAction>();
+  actions = DayStatus;
+
+  status: DayStatus = DayStatus.open;
+
+  @Output() action = new EventEmitter<DayStatus>();
 
   event = new EventEmitter();
 
@@ -18,7 +21,11 @@ export class ChallengeActionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAction(event: ChallengeAction) {
+  onAction(event: DayStatus) {
+    if (this.status === event){
+      return;
+    }
+    this.status = event;
     this.action.emit(event);
   }
 

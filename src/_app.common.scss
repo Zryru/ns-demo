@@ -32,6 +32,7 @@ This is where the vast majority of your CSS code goes. */
 
 // components
 @import './theme/forms';
+@import './theme//buttons';
 
 // shame
 
@@ -70,4 +71,12 @@ button.btn-flat {
   font-family: 'FontAwesome', 'Font-Awesome';
   font-size: 17;
   color: white;
+}
+
+.page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20;
+  // height: 100%;
 }

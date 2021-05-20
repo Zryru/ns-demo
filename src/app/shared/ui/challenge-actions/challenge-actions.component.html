@@ -1,17 +1,20 @@
 <FlexboxLayout>
   <Button
-    class="btn btn-success -rounded-lg"
-    text="Completed"
-    (tap)="onAction('completed')"
+    class="btn btn-success -rounded-lg fa"
+    [text]="status === actions.completed ? '&#xf00c;' : 'Complete'"
+    (tap)="onAction(actions.completed)"
+    [isEnabled]="status === actions.open"
   ></Button>
   <Button
-    class="btn btn-fail -rounded-lg"
-    text="Failed"
-    (tap)="onAction('failed')"
+    class="btn btn-fail -rounded-lg fa"
+    [text]="status === actions.failed ? '&#xf00d;' : 'Failed'"
+    (tap)="onAction(actions.failed)"
+    [isEnabled]="status === actions.open"
   ></Button>
   <Button
     class="btn btn-flat -rounded-lg"
     text="Reset"
-    (tap)="onAction('reset')"
+    (tap)="onAction(actions.open)"
+    [isEnabled]="status !== actions.open"
   ></Button>
 </FlexboxLayout>

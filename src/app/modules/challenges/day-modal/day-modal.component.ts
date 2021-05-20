@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDialogParams } from '@nativescript/angular';
-import { ChallengeAction } from '~/app/shared/ui/challenge-actions/challenge-actions.component';
+import { DayStatus } from '~/app/models/day.model';
 
 @Component({
   selector: 'nsjdc-day-modal',
@@ -17,7 +17,7 @@ export class DayModalComponent implements OnInit {
      this.context = this.modalDialogParams.context;
   }
 
-  clickHandler(event: ChallengeAction) {
+  clickHandler(event: DayStatus) {
     this.modalDialogParams.closeCallback(event);
   }
 }

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { PageRoute, registerElement, RouterExtensions } from '@nativescript/angular';
 import { FlexboxLayout } from '@nativescript/core';
 import { switchMap } from 'rxjs/operators';
+import { ChallengeService } from '~/app/services/challenge.service';
 
 @Component({
   selector: 'nsjdc-challenge-edit',
@@ -15,7 +16,7 @@ export class ChallengeEditComponent implements OnInit {
 
   @ViewChild('f', { static: true }) form: NgForm;
 
-  constructor(private pageRoute: PageRoute, private router: RouterExtensions) {
+  constructor(private pageRoute: PageRoute, private router: RouterExtensions, private challengeService: ChallengeService) {
     registerElement('form', () => FlexboxLayout);
   }
 
@@ -33,6 +34,7 @@ export class ChallengeEditComponent implements OnInit {
 
   onSubmit(){
     console.log('[Form]', this.form.value)
+    this.challengeService.createNewChallenge(this.form.value.title, this.form.value.description);
     this.router.backToPreviousPage();
   }
 

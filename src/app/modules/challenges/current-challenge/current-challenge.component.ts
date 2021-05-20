@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, RouterExtensions } from '@nativescript/angular';
+import { ChallengeService } from '../../../services/challenge.service';
 import { DayModalComponent } from '../day-modal/day-modal.component';
 
 declare var android: any;
@@ -13,29 +14,30 @@ export class CurrentChallengeComponent implements OnInit {
 
   weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   days: { dayInMonth: number; dayInWeek: number }[] = [];
-  private currentYear: number;
-  private currentMonth: number;
+
+  get currentChallenge$() {
+    return this.challengeService.currentChallenge$;
+  }
+
+  // private currentYear: number;
+  // private currentMonth: number;
+
+
+
   constructor(
     private router: RouterExtensions,
     private modalDialog: ModalDialogService,
     private vcRef: ViewContainerRef,
+    private challengeService: ChallengeService
   ) {}
   ngOnInit(): void {
-     this.currentYear = new Date().getFullYear();
-     this.currentMonth = new Date().getMonth();
-    const daysInMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
 
-    for (let i = 1; i < daysInMonth; i++) {
-      const date = new Date(this.currentYear, this.currentMonth, i);
-      const dayInWeek = date.getDay();
-      this.days.push({dayInMonth: i, dayInWeek})
-    }
   }
 
   getRow(index: number, day: {dayInMonth: number, dayInWeek: number}) {
     const startRow = 1;
     const weekRow = Math.floor(index/7);
-    const firstWeekDayOfMonth = new Date(this.currentYear, this.currentMonth, 1).getDay();
+    const firstWeekDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).getDay();
     const irregularRow = day.dayInWeek < firstWeekDayOfMonth ? 1 : 0;
     return startRow + weekRow + irregularRow;
   }

@@ -3,20 +3,6 @@
 
 @import '../../../../theme/colors';
 
-button.btn {
-  width: 80%;
-}
-
-button.btn-success {
-  background-color: $success !important;
-  color: $white;
-}
-
-button.btn-fail {
-  background-color: $fail;
-  color: $white;
-}
-
 FlexboxLayout {
   flex-direction: column;
   justify-content: center;
@@ -24,4 +10,18 @@ FlexboxLayout {
   height: 100%;
 }
 
+.animate-button {
+  animation-name: slide-up;
+  animation-iteration-count: 1;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
 
+@keyframes slide-up {
+  from {
+    transform: translateY(-30);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

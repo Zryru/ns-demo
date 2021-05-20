@@ -1,4 +1,4 @@
-<nsjdc-action-bar [title]="'Current Challenge'">
+<nsjdc-action-bar [title]="(currentChallenge$ | async)?.title">
   <ActionItem ios.position="right" android.position="actionBar">
     <Label text="&#xf0fe;" ios:class="fa" android:class="fa" (tap)="goCreate()"></Label>
   </ActionItem>
@@ -7,12 +7,12 @@
   </ActionItem>
 </nsjdc-action-bar>
 <ScrollView height="100%">
-  <FlexboxLayout class="page">
+  <FlexboxLayout class="page" *ngIf="(currentChallenge$ | async) as currentChallenge; else noContent">
     <FlexboxLayout flexDirection="column">
       <Label class="h1 text-center" [text]="'The current challenge'"></Label>
       <Label
         class="body text-center"
-        [text]="'The current challenge fancy description!'"
+        [text]="currentChallenge?.description"
       ></Label>
     </FlexboxLayout>
     <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
@@ -26,7 +26,7 @@
       ></Label>
       <Label
         class="day text-center not-setable"
-        *ngFor="let day of days; let i = index"
+        *ngFor="let day of currentChallenge?.days; let i = index"
         [text]="day.dayInMonth"
         [row]="getRow(i, day)"
         [col]="day.dayInWeek"
@@ -34,4 +34,10 @@
       ></Label>
     </GridLayout>
   </FlexboxLayout>
+  <ng-template #noContent>
+    <FlexboxLayout class="page" flexDirection="column">
+      <Label class="h1" text="no current challenge!!!"></Label>
+      <Button class="btn -primary" text="create a challenge" (tap)="goCreate()"></Button>
+    </FlexboxLayout>
+  </ng-template>
 </ScrollView>

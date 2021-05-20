@@ -1,4 +1,17 @@
 <nsjdc-action-bar [title]="'Todays Challenge'"> </nsjdc-action-bar>
-<GridLayout>
-    <nsjdc-challenge-actions (action)="onAction($event)"></nsjdc-challenge-actions>
-</GridLayout>
+<FlexboxLayout class="page" *ngIf="currentDay$ | async as currentDay; else noContent">
+  <Label class="h1" [text]="currentDay?.date | date"></Label>
+  <nsjdc-challenge-actions
+    (action)="onAction($event, currentDay)"
+  ></nsjdc-challenge-actions>
+</FlexboxLayout>
+<ng-template #noContent>
+  <FlexboxLayout class="page" flexDirection="column">
+    <Label class="h1" text="no current challenge!!!"></Label>
+    <Button
+      class="btn -primary"
+      text="create a challenge"
+      (tap)="goCreate()"
+    ></Button>
+  </FlexboxLayout>
+</ng-template>
