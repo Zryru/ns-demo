@@ -11,8 +11,6 @@ export class ChallengeService {
 
   private _currentChallenge = new BehaviorSubject<Challenge>(null);
 
-  // constructor(private httpClient: HttpClient) {}
-
   createNewChallenge(title: string, description: string) {
     const newChallenge = new Challenge(
       title,
@@ -22,6 +20,18 @@ export class ChallengeService {
     );
 
     this._currentChallenge.next(newChallenge);
+  }
+
+  updateChallenge(title: string, description: string) {
+    const challenge = new Challenge(
+      title,
+      description,
+      this._currentChallenge.value.year,
+      this._currentChallenge.value.month,
+      this._currentChallenge.value.days,
+    );
+    // send to server
+    this._currentChallenge.next(challenge);
   }
 
   updateDayStatus(dayInMonth: number, status: DayStatus) {
@@ -35,7 +45,5 @@ export class ChallengeService {
 
     currentChallenge.days[dayIndex].status = status;
     this._currentChallenge.next(currentChallenge);
-
-    console.log('[DAY]', currentChallenge.days[dayIndex]);
   }
 }

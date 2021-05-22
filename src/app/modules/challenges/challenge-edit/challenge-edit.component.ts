@@ -13,7 +13,8 @@ import { ChallengeService } from '~/app/services/challenge.service';
 export class ChallengeEditComponent implements OnInit {
   challengeDescription = '';
   isCreating = true;
-
+title;
+description;
   @ViewChild('f', { static: true }) form: NgForm;
 
   constructor(private pageRoute: PageRoute, private router: RouterExtensions, private challengeService: ChallengeService) {
@@ -31,14 +32,12 @@ export class ChallengeEditComponent implements OnInit {
         }
 
         if(!this.isCreating) {
-          console.log('edit!!!');
           this.challengeService.currentChallenge$
             .pipe(take(1))
             .subscribe((currentChallenge) => {
-              console.log('????', currentChallenge, this.form.value)
               if (currentChallenge) {
-                this.form.value.title = currentChallenge.title;
-                this.form.value.description = currentChallenge.description;
+                this.title = currentChallenge.title;
+                this.description = currentChallenge.description;
               }
             });
         }
@@ -46,8 +45,11 @@ export class ChallengeEditComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('[Form]', this.form.value)
-    this.challengeService.createNewChallenge(this.form.value.title, this.form.value.description);
+    if (this.isCreating){
+      this.challengeService.createNewChallenge(this.form.value.titleControl, this.form.value.descriptionControl);
+    } else {
+      this.challengeService.updateChallenge(this.form.value.titleControl, this.form.value.descriptionControl);
+    }
     this.router.backToPreviousPage();
   }
 

@@ -87,7 +87,6 @@ export class CurrentChallengeComponent implements OnInit {
         cancelable: false,
       })
       .then((callBackResult: DayStatus) => {
-        // console.log('Modal call back', callBackResult);
         this.challengeService.updateDayStatus(day.dayInMonth, callBackResult);
       });
   }
