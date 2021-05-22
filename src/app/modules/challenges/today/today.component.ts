@@ -8,7 +8,7 @@ import { ChallengeService } from '~/app/services/challenge.service';
   selector: 'nsjdc-today',
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodayComponent implements OnInit {
   get currentDay$(): Observable<Day> {
@@ -16,7 +16,9 @@ export class TodayComponent implements OnInit {
       map((challenge) => challenge?.currentDay),
     );
   }
-π
+
+  isLoading = false;
+
   constructor(
     private router: RouterExtensions,
     private challengeService: ChallengeService,
@@ -25,7 +27,21 @@ export class TodayComponent implements OnInit {
   ngOnInit(): void {}
 
   onAction(event: DayStatus, currentDay: Day) {
-    this.challengeService.updateDayStatus(currentDay.dayInMonth, event);
+    if (this.isLoading) {
+      return;
+    }
+    this.isLoading = true;
+    this.challengeService
+      .updateDayStatus(currentDay.dayInMonth, event)
+      .subscribe(
+        () => {
+          this.isLoading = false;
+        },
+        (err) => {
+          this.isLoading = false;
+          console.error('[Todays update status]', err);
+        },
+      );
   }
 
   goCreate() {

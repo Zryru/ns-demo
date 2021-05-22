@@ -3,6 +3,9 @@ hooks/
 node_modules/
 platforms/
 
+# prevent
+environment.ts
+
 # Logs
 logs
 *.log

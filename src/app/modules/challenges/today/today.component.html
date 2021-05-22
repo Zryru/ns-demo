@@ -1,6 +1,8 @@
 <nsjdc-action-bar [title]="'Todays Challenge'"> </nsjdc-action-bar>
 <FlexboxLayout class="page" *ngIf="currentDay$ | async as currentDay; else noContent">
   <Label class="h1" [text]="currentDay?.date | date"></Label>
+  <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+
   <nsjdc-challenge-actions [status]="currentDay.status"
     (action)="onAction($event, currentDay)"
   ></nsjdc-challenge-actions>

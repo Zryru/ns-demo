@@ -11,6 +11,7 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ChallengeService } from './services/challenge.service';
 import { UIService } from './shared/ui/ui.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   radSideDrawer: RadSideDrawerComponent;
   private sideDrawer: RadSideDrawer;
   private destroyed$ = new Subject<void>();
-  constructor(private uiService: UIService, private router: RouterExtensions) {}
+  constructor(private uiService: UIService, private router: RouterExtensions, private challengeService: ChallengeService) {}
 
   ngOnInit() {
     this.uiService.onToggleDrawer$
@@ -43,6 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   logout(){
+    this.challengeService.reset();
     this.router.navigate(['/'], {clearHistory: true});
     this.uiService.toggleDrawer();
   }

@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { PageRoute, registerElement, RouterExtensions } from '@nativescript/angular';
+import {
+  PageRoute,
+  registerElement,
+  RouterExtensions
+} from '@nativescript/angular';
 import { FlexboxLayout } from '@nativescript/core';
 import { switchMap, take } from 'rxjs/operators';
 import { ChallengeService } from '~/app/services/challenge.service';
@@ -13,11 +17,17 @@ import { ChallengeService } from '~/app/services/challenge.service';
 export class ChallengeEditComponent implements OnInit {
   challengeDescription = '';
   isCreating = true;
-title;
-description;
+  title;
+  description;
+  isLoading = false;
+
   @ViewChild('f', { static: true }) form: NgForm;
 
-  constructor(private pageRoute: PageRoute, private router: RouterExtensions, private challengeService: ChallengeService) {
+  constructor(
+    private pageRoute: PageRoute,
+    private router: RouterExtensions,
+    private challengeService: ChallengeService,
+  ) {
     registerElement('form', () => FlexboxLayout);
   }
 
@@ -31,7 +41,7 @@ description;
           this.isCreating = paramMap.get('mode') !== 'edit';
         }
 
-        if(!this.isCreating) {
+        if (!this.isCreating) {
           this.challengeService.currentChallenge$
             .pipe(take(1))
             .subscribe((currentChallenge) => {
@@ -44,13 +54,40 @@ description;
       });
   }
 
-  onSubmit(){
-    if (this.isCreating){
-      this.challengeService.createNewChallenge(this.form.value.titleControl, this.form.value.descriptionControl);
+  onSubmit() {
+    this.isLoading = true;
+    if (this.isCreating) {
+      this.challengeService
+        .createNewChallenge(
+          this.form.value.titleControl,
+          this.form.value.descriptionControl,
+        )
+        .subscribe(
+          () => {
+            this.router.backToPreviousPage();
+            this.isLoading = false;
+          },
+          (err) => {
+            console.error(['create challenge err'], err);
+            this.isLoading = false;
+          },
+        );
     } else {
-      this.challengeService.updateChallenge(this.form.value.titleControl, this.form.value.descriptionControl);
+      this.challengeService
+        .updateChallenge(
+          this.form.value.titleControl,
+          this.form.value.descriptionControl,
+        )
+        .subscribe(
+          () => {
+            this.router.backToPreviousPage();
+            this.isLoading = false;
+          },
+          (err) => {
+            console.error(['create challenge err'], err);
+            this.isLoading = false;
+          },
+        );
     }
-    this.router.backToPreviousPage();
   }
-
 }

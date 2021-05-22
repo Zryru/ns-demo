@@ -17,7 +17,7 @@ export class CurrentChallengeComponent implements OnInit {
   days: { dayInMonth: number; dayInWeek: number }[] = [];
 
   status = DayStatus;
-
+  isLoading = false;
   get currentChallenge$() {
     return this.challengeService.currentChallenge$;
   }
@@ -25,22 +25,22 @@ export class CurrentChallengeComponent implements OnInit {
   // private currentYear: number;
   // private currentMonth: number;
 
-
-
   constructor(
     private router: RouterExtensions,
     private modalDialog: ModalDialogService,
     private vcRef: ViewContainerRef,
-    private challengeService: ChallengeService
+    private challengeService: ChallengeService,
   ) {}
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  getRow(index: number, day: {dayInMonth: number, dayInWeek: number}) {
+  getRow(index: number, day: { dayInMonth: number; dayInWeek: number }) {
     const startRow = 1;
-    const weekRow = Math.floor(index/7);
-    const firstWeekDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).getDay();
+    const weekRow = Math.floor(index / 7);
+    const firstWeekDayOfMonth = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      1,
+    ).getDay();
     const irregularRow = day.dayInWeek < firstWeekDayOfMonth ? 1 : 0;
     return startRow + weekRow + irregularRow;
   }
@@ -62,7 +62,7 @@ export class CurrentChallengeComponent implements OnInit {
   }
 
   onChangeStatus(day: Day) {
-    if(!this.getIsSetable(day.dayInMonth)){
+    if (!this.getIsSetable(day.dayInMonth)) {
       return;
     }
     // const loginOptions = {
@@ -87,7 +87,18 @@ export class CurrentChallengeComponent implements OnInit {
         cancelable: false,
       })
       .then((callBackResult: DayStatus) => {
-        this.challengeService.updateDayStatus(day.dayInMonth, callBackResult);
+        this.isLoading = true;
+        this.challengeService
+          .updateDayStatus(day.dayInMonth, callBackResult)
+          .subscribe(
+            () => {
+              this.isLoading = false;
+            },
+            (err) => {
+              this.isLoading = false;
+              console.error('[current chalenge from modal]', err);
+            },
+          );
       });
   }
 }
