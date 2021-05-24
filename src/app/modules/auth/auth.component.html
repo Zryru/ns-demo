@@ -94,10 +94,16 @@
     class="btn -flat"
     (tap)="toggleLogin()"
     [text]="!isLogging ? 'Login instead' : 'Sign Up instead'"
+    [isEnabled]="!isLoading"
+
   ></Button>
   <Button
     class="btn -primary -rounded-lg"
     [text]="isLogging ? 'Login' : 'Sign Up'"
     (tap)="onAuth()"
+    [isEnabled]="!isLoading"
   ></Button>
+
+  <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+
 </StackLayout>

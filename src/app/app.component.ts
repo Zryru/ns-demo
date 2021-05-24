@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-
   Component,
   OnDestroy,
   OnInit,
@@ -10,7 +9,8 @@ import { RouterExtensions } from '@nativescript/angular';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
 import { ChallengeService } from './services/challenge.service';
 import { UIService } from './shared/ui/ui.service';
 
@@ -23,7 +23,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   radSideDrawer: RadSideDrawerComponent;
   private sideDrawer: RadSideDrawer;
   private destroyed$ = new Subject<void>();
-  constructor(private uiService: UIService, private router: RouterExtensions, private challengeService: ChallengeService) {}
+  constructor(
+    private uiService: UIService,
+    private router: RouterExtensions,
+    private challengeService: ChallengeService,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit() {
     this.uiService.onToggleDrawer$
@@ -31,6 +36,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(() => {
         if (this.sideDrawer) {
           this.sideDrawer.toggleDrawerState();
+        }
+      });
+
+    this.authService
+      .autoLogin()
+      .pipe(take(1))
+      .subscribe((boolean) => {
+        if (boolean) {
+          this.router.navigate(['/challenges'], { clearHistory: true });
+        }
+      });
+
+    this.authService.user$
+      .pipe(filter((x) => x === undefined))
+      .subscribe((user) => {
+        if (user === null) {
+          this.router.navigate(['/auth'], {
+            clearHistory: true,
+            transition: { name: 'slideRight' },
+          });
         }
       });
   }
@@ -43,9 +68,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.destroyed$.next();
   }
 
-  logout(){
+  logout() {
+    this.authService.logout();
     this.challengeService.reset();
-    this.router.navigate(['/'], {clearHistory: true});
+    this.router.navigate(['/auth'], {
+      clearHistory: true,
+      transition: { name: 'slideRight' },
+    });
     this.uiService.toggleDrawer();
   }
 }

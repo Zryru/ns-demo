@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
+import { switchMap, take, tap } from 'rxjs/operators';
 import { environment } from '../../environment/environment';
 import { Challenge } from '../models/challenge.model';
 import { DayStatus } from '../models/day.model';
+import { AuthService } from './auth.service';
 @Injectable({ providedIn: 'root' })
 export class ChallengeService {
   get currentChallenge$() {
@@ -13,12 +14,22 @@ export class ChallengeService {
 
   private _currentChallenge = new BehaviorSubject<Challenge>(undefined);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   loadChallenge() {
-    this.http
-      .get(environment.api + '/challenge.json')
-      .pipe(take(1))
+    this.authService.user$
+      .pipe(
+        take(1),
+        switchMap((user) => {
+          if (!user.isAuth) {
+            return of(null);
+          }
+          return this.http.get(
+            environment.firebaseConfig.databaseURL +
+              `/challenge/${user.id}.json?auth=${user.token}`,
+          );
+        }),
+      )
       .subscribe((response: any) => {
         const challenge = new Challenge(
           response.title,
@@ -69,7 +80,18 @@ export class ChallengeService {
   }
 
   private saveToServer(challenge: Challenge) {
-    return this.http.put(environment.api + '/challenge.json', challenge).pipe(
+    return this.authService.user$.pipe(
+      take(1),
+      switchMap((user) => {
+        if (!user.isAuth) {
+          return of(null);
+        }
+        return this.http.put(
+          environment.firebaseConfig.databaseURL +
+            `/challenge/${user.id}.json?auth=${user.token}`,
+          challenge,
+        );
+      }),
       tap((res) => {
         this._currentChallenge.next(challenge);
       }),

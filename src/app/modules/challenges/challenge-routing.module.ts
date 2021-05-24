@@ -7,7 +7,7 @@ import { TodayComponent } from './today/today.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: ChallengeTabsComponent,
     children: [
       { path: 'today', component: TodayComponent, outlet: 'today' },
@@ -15,7 +15,7 @@ const routes: Routes = [
     ],
   },
   { path: ':mode', component: ChallengeEditComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full'}
+  // { path: '', redirectTo: 'dashboard', pathMatch: 'full'}
 ];
 
 @NgModule({
